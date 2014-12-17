@@ -5,7 +5,7 @@ date: "16/12/2014"
 output: html_document
 ---
 
-1. Load the required packages
+*Load the required packages
 
 
 ```r
@@ -13,7 +13,7 @@ library(dplyr)
 library(tidyr)
 ```
 
-2. Load the training and the test datasets and merge them
+*Load the training and the test datasets and merge them
 
 
 ```r
@@ -22,7 +22,7 @@ testData=read.table("./UCI HAR Dataset/test/X_test.txt")
 data=rbind(trainData,testData)
 ```
 
-3. Load the features file and use it for the columnanes of the data. 
+*Load the features file and use it for the columnanes of the data. 
 
 
 ```r
@@ -35,7 +35,7 @@ colnames(data)=gsub("std\\()","Std",colnames(data))
 colnames(data)=gsub("-","",colnames(data))
 ```
 
-4. Filter the data, extracting just the measures of the mean and the standard deviation for each measurement.
+*Filter the data, extracting just the measures of the mean and the standard deviation for each measurement.
 
 
 ```r
@@ -46,7 +46,7 @@ colnames(data)=gsub("std\\()","Std",colnames(data))
 colnames(data)=gsub("-","",colnames(data))
 ```
 
-5. Tidy the column names, taking out () and -
+*Tidy the column names, taking out () and -
 
 ```r
 colnames(data)=gsub("mean\\()","Mean",colnames(data))
@@ -54,7 +54,7 @@ colnames(data)=gsub("std\\()","Std",colnames(data))
 colnames(data)=gsub("-","",colnames(data))
 ```
 
-6.  Load the training and the test activity files, merge them as a factor variable, with its description names as the levels and add it to the main data set as a variable called activity
+*Load the training and the test activity files, merge them as a factor variable, with its description names as the levels and add it to the main data set as a variable called activity
 
 ```r
 trainY=read.table("./UCI HAR Dataset/train/y_train.txt")[,1]
@@ -65,7 +65,7 @@ levels(Y)=activityLevels
 data$activity=Y
 ```
 
-7.  Load the training and the test subject files, merge them as a factor variable and add it to the main data set as a variable called subject
+*Load the training and the test subject files, merge them as a factor variable and add it to the main data set as a variable called subject**
 
 ```r
 trainSubject=read.table("./UCI HAR Dataset/train/subject_train.txt")[,1]
@@ -74,7 +74,7 @@ subject=as.factor(c(trainSubject,testSubject))
 data$subject=subject
 ```
 
-8.  Create an independent dataset gathering all the measurements in one variable called measure and its values in a variable called value, group this dataset by measure, activity, and subject and summarize it with the average of each variable for each activity and each subject.
+*Create an independent dataset gathering all the measurements in one variable called measure and its values in a variable called value, group this dataset by measure, activity, and subject and summarize it with the average of each variable for each activity and each subject.
 
 
 ```r
